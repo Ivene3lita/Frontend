@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Borrowed Books - Digital Library</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/nav.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📚 Digital Library</h1>
+            </div>
+            <div class="nav-links">
+                <a href="catalogue.html" class="nav-link">Catalogue</a>
+                <a href="my-books.html" class="nav-link" id="myBooksNav" style="display: none;">My Books</a>
+                <a href="admin-borrowed.html" class="nav-link active">All Borrowed</a>
+            </div>
+            <div class="nav-user">
+                <span id="userWelcome">Welcome, <strong id="userName"></strong></span>
+                <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <h2>All Borrowed Books</h2>
+            <p class="page-subtitle">View all book borrowings with user information</p>
+        </div>
+
+        <div id="loadingBorrowedBooks" class="loading hidden">Loading...</div>
+        <div id="borrowedBooksError" class="error hidden"></div>
+        <div id="borrowedBooksList" class="borrowed-books-admin-list"></div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- JavaScript Modules -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/borrowings.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/admin-borrowed.js"></script>
+</body>
+</html>
+

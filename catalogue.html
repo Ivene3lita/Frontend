@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Catalogue - Digital Library</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/nav.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>📚 Digital Library</h1>
+            </div>
+            <div class="nav-links">
+                <a href="catalogue.html" class="nav-link active">Catalogue</a>
+                <a href="my-books.html" class="nav-link" id="myBooksNav" style="display: none;">My Books</a>
+                <a href="admin-borrowed.html" class="nav-link" id="adminBorrowedNav" style="display: none;">All Borrowed</a>
+            </div>
+            <div class="nav-user">
+                <span id="userWelcome">Welcome, <strong id="userName"></strong></span>
+                <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <h2>Book Catalogue</h2>
+            <p class="page-subtitle">Browse and search our collection</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" id="addBookBtn" style="display: none;">+ Add New Book</button>
+            <div class="search-filters">
+                <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN...">
+                <select id="genreFilter">
+                    <option value="">All Genres</option>
+                </select>
+                <select id="availabilityFilter">
+                    <option value="">All Books</option>
+                    <option value="true">Available Only</option>
+                    <option value="false">Unavailable Only</option>
+                </select>
+                <button class="btn btn-secondary" id="clearFiltersBtn">Clear Filters</button>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" class="loading hidden">Loading...</div>
+        <div id="errorMessage" class="error hidden"></div>
+
+        <div id="booksGrid" class="books-grid"></div>
+    </div>
+
+    <!-- Modal for Add/Edit Book -->
+    <div id="bookModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Book</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="bookForm">
+                <input type="hidden" id="bookId">
+                
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Author *</label>
+                    <input type="text" id="author" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="isbn">ISBN</label>
+                        <input type="text" id="isbn">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <input type="text" id="genre" list="genreList">
+                        <datalist id="genreList"></datalist>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="publication_year">Publication Year</label>
+                        <input type="number" id="publication_year" min="1000" max="9999">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publisher">Publisher</label>
+                        <input type="text" id="publisher">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Confirm Delete</h2>
+            </div>
+            <p>Are you sure you want to delete this book? This action cannot be undone.</p>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- JavaScript Modules -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/borrowings.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/catalogue.js"></script>
+</body>
+</html>
+
