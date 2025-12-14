@@ -72,6 +72,11 @@ function displayBooks(booksToDisplay, currentUser) {
     
     booksGrid.innerHTML = booksToDisplay.map(book => `
         <div class="book-card ${book.available ? 'available' : 'unavailable'}">
+            ${book.image_url ? `
+                <div class="book-cover-container">
+                    <img src="${escapeHtml(book.image_url)}" alt="${escapeHtml(book.title)} cover" class="book-cover" onerror="this.style.display='none'">
+                </div>
+            ` : ''}
             <h3 class="book-title">${escapeHtml(book.title)}</h3>
             <p class="book-author">by ${escapeHtml(book.author)}</p>
             

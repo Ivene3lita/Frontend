@@ -85,6 +85,7 @@ async function loadBookForEdit(id) {
             document.getElementById('publication_year').value = book.publication_year || '';
             document.getElementById('publisher').value = book.publisher || '';
             document.getElementById('description').value = book.description || '';
+            document.getElementById('image_url').value = book.image_url || '';
         }
     } finally {
         showLoading(false);
@@ -124,7 +125,8 @@ async function handleFormSubmit(e) {
         genre: document.getElementById('genre').value.trim() || null,
         publication_year: document.getElementById('publication_year').value ? parseInt(document.getElementById('publication_year').value) : null,
         publisher: document.getElementById('publisher').value.trim() || null,
-        description: document.getElementById('description').value.trim() || null
+        description: document.getElementById('description').value.trim() || null,
+        image_url: document.getElementById('image_url').value.trim() || null
     };
     
     if (!window.currentBookId) {

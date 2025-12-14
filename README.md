@@ -19,9 +19,11 @@ Frontend application for the Digital Library Catalogue System built with HTML, C
 
 ### Book Catalogue (All Users)
 - 📚 View all books in a beautiful, responsive grid layout
+- 🖼️ Display book cover images for visual identification
 - 🔍 Real-time search by title, author, or ISBN
 - 🏷️ Filter books by genre and availability status
 - 📊 Comprehensive book details display:
+  - Book cover image (if provided)
   - Title, Author, ISBN
   - Genre, Publication Year, Publisher
   - Description and availability status
@@ -102,7 +104,8 @@ Default admin credentials:
 
 2. **Manage Books:**
    - Click "+ Add New Book" to add new books
-   - Click "Edit" on any book card to modify book information
+   - Add book cover images by entering an image URL in the "Book Cover Image URL" field
+   - Click "Edit" on any book card to modify book information, including cover images
    - Click "Delete" to remove books (with confirmation)
    - All new books are automatically set as available
 
