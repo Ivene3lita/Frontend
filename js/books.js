@@ -68,6 +68,32 @@ function updateGenreFilter(genres) {
     }
 }
 
+function updateImagePreview() {
+    const imageUrlInput = document.getElementById('image_url');
+    const previewContainer = document.getElementById('imagePreviewContainer');
+    const previewImage = document.getElementById('imagePreview');
+    
+    if (!imageUrlInput || !previewContainer || !previewImage) {
+        return;
+    }
+    
+    const imageUrl = imageUrlInput.value.trim();
+    
+    if (imageUrl) {
+        previewImage.src = imageUrl;
+        previewImage.onerror = () => {
+            previewContainer.classList.add('hidden');
+        };
+        previewImage.onload = () => {
+            previewContainer.classList.remove('hidden');
+        };
+    } else {
+        previewContainer.classList.add('hidden');
+    }
+}
+
+window.updateImagePreview = updateImagePreview;
+
 async function loadBookForEdit(id) {
     showLoading(true);
     try {
@@ -86,6 +112,7 @@ async function loadBookForEdit(id) {
             document.getElementById('publisher').value = book.publisher || '';
             document.getElementById('description').value = book.description || '';
             document.getElementById('image_url').value = book.image_url || '';
+            updateImagePreview();
         }
     } finally {
         showLoading(false);
@@ -96,6 +123,7 @@ function openBookModal(bookId = null) {
     window.currentBookId = bookId;
     const modalTitle = document.getElementById('modalTitle');
     const bookModal = document.getElementById('bookModal');
+    const previewContainer = document.getElementById('imagePreviewContainer');
     
     if (bookId) {
         modalTitle.textContent = 'Edit Book';
@@ -103,6 +131,7 @@ function openBookModal(bookId = null) {
     } else {
         modalTitle.textContent = 'Add New Book';
         document.getElementById('bookForm').reset();
+        previewContainer.classList.add('hidden');
     }
     
     bookModal.classList.remove('hidden');
@@ -110,8 +139,10 @@ function openBookModal(bookId = null) {
 
 function closeBookModal() {
     const bookModal = document.getElementById('bookModal');
+    const previewContainer = document.getElementById('imagePreviewContainer');
     bookModal.classList.add('hidden');
     document.getElementById('bookForm').reset();
+    previewContainer.classList.add('hidden');
     window.currentBookId = null;
 }
 

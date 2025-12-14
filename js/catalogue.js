@@ -49,6 +49,11 @@ function setupEventListeners() {
         bookForm.addEventListener('submit', handleFormSubmit);
     }
     
+    const imageUrlInput = document.getElementById('image_url');
+    if (imageUrlInput) {
+        imageUrlInput.addEventListener('input', debounce(updateImagePreview, 500));
+    }
+    
     if (searchInput) {
         searchInput.addEventListener('input', debounce(loadBooks, 300));
     }
